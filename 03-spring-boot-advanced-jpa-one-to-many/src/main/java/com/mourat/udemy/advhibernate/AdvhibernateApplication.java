@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class AdvhibernateApplication {
 
@@ -139,6 +141,12 @@ public class AdvhibernateApplication {
 		Instructor instructor = dao.findInstructorById(id);
 
 		System.out.println(instructor);
+
+		List<Course> courses = dao.findCoursesByInstructorId(id);
+
+		instructor.setCourses(courses);
+
+
 		System.out.println(instructor.getCourses());
 	}
 
