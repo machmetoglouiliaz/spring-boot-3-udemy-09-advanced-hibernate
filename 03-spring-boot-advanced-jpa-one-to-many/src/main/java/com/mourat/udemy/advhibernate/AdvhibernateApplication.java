@@ -27,19 +27,37 @@ public class AdvhibernateApplication {
 			searchInstructorDetail(dao);
 			deleteInstructorDetail(dao);
 			searchInstructorDetail(dao);
+			createInstructorWithCourses(dao);
+			findInstructorWithCourses(dao);
 
 			 */
-			//createInstructorWithCourses(dao);
-			findInstructorWithCourses(dao);
+			deleteCourse(dao);
 		};
+	}
+
+	private void deleteCourse(AppDAO dao) {
+
+		int id = 12;
+
+		Instructor instructor = dao.findInstructorByIdJoinFetch(2);
+
+		System.out.println("Deleteing course with id " + id);
+
+		dao.deleteCourseById(instructor.getCourses().getFirst().getId());
+
+		System.out.println("Course has been deleted!");
 	}
 
 	private void deleteInstructor(AppDAO dao) {
 
 		int id = 1;
 
+		System.out.println(dao.findInstructorById(id));
+
 		dao.deleteInstructorById(id);
+
 		System.out.println("Instructor with id " + id + " has been deleted!");
+		System.out.println(dao.findInstructorById(id));
 	}
 
 	private void searchInstructor(AppDAO dao) {
@@ -143,6 +161,21 @@ public class AdvhibernateApplication {
 		System.out.println(instructor);
 
 		System.out.println(instructor.getCourses());
+	}
+
+	private void updateInstructor(AppDAO dao){
+
+		int id = 1;
+
+		Instructor instructor = dao.findInstructorById(id);
+
+		System.out.println(instructor);
+
+		instructor.setEmail("mayrit@gmail.com");
+
+		dao.update(instructor);
+
+		System.out.println("Update complete: " + instructor);
 	}
 
 }
