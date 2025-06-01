@@ -138,14 +138,9 @@ public class AdvhibernateApplication {
 
 		int id = 1;
 
-		Instructor instructor = dao.findInstructorById(id);
+		Instructor instructor = dao.findInstructorByIdJoinFetch(id);
 
 		System.out.println(instructor);
-
-		List<Course> courses = dao.findCoursesByInstructorId(id);
-
-		instructor.setCourses(courses);
-
 
 		System.out.println(instructor.getCourses());
 	}
