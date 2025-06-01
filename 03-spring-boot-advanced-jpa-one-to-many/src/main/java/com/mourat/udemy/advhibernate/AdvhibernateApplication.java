@@ -27,7 +27,8 @@ public class AdvhibernateApplication {
 			searchInstructorDetail(dao);
 
 			 */
-			createInstructorWithCourses(dao);
+			//createInstructorWithCourses(dao);
+			findInstructorWithCourses(dao);
 		};
 	}
 
@@ -129,6 +130,16 @@ public class AdvhibernateApplication {
 		dao.saveInstructor(instructor2);
 
 		System.out.println("The instructors are saved successfully!");
+	}
+
+	private void findInstructorWithCourses(AppDAO dao){
+
+		int id = 1;
+
+		Instructor instructor = dao.findInstructorById(id);
+
+		System.out.println(instructor);
+		System.out.println(instructor.getCourses());
 	}
 
 }

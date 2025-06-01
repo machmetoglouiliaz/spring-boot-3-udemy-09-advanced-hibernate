@@ -27,7 +27,8 @@ public class Instructor {
     @JoinColumn(name="instructor_detail_id")
     private InstructorDetail detail;
 
-    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+                fetch = FetchType.EAGER)
     private List<Course> courses;
 
     public Instructor() {
@@ -85,6 +86,14 @@ public class Instructor {
 
     public void setDetail(InstructorDetail detail) {
         this.detail = detail;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
